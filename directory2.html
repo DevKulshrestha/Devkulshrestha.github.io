@@ -4,8 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Directory 2</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 50px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 15px 25px;
+            font-size: 24px;
+            color: #fff;
+            background-color: #ff0000;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 5px #999;
+            text-decoration: none;
+        }
+        .btn:active {
+            box-shadow: 0 3px #666;
+            transform: translateY(4px);
+        }
+        #content {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to Directory 2</h1>
+    <div class="container">
+        <h1>Archive 2</h1>
+        <button class="btn" id="readButton">Read Archive 2</button>
+        <div id="content"></div>
+    </div>
+    <script>
+        document.getElementById('readButton').addEventListener('click', function() {
+            const content = document.getElementById('content');
+            content.innerHTML = 'Your custom text here.';  // Replace with your desired text
+        });
+    </script>
 </body>
 </html>
+
