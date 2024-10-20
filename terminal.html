@@ -46,8 +46,9 @@
             border: 10px solid black;
             border-radius: 50%;
             position: relative;
+            background: white;
         }
-        .clock .hand {
+        .hand {
             width: 50%;
             height: 6px;
             background: black;
@@ -56,24 +57,23 @@
             transform-origin: 100%;
             transform: rotate(90deg);
         }
-        .clock .hour {
+        .hour {
             height: 8px;
             top: 45%;
         }
-        .clock .number {
+        .number, .mark {
             position: absolute;
-            width: 20px;
-            height: 20px;
-            left: 50%;
-            transform: translateX(-50%);
+            text-align: center;
+            width: 100%;
+            transform: translate(-50%, -50%);
         }
-        .clock .mark {
-            position: absolute;
+        .number {
+            font-size: 18px;
+        }
+        .mark {
             width: 4px;
             height: 10px;
             background: black;
-            left: 50%;
-            transform: translateX(-50%);
         }
         .btn {
             display: inline-block;
@@ -97,21 +97,26 @@
 <body>
     <div class="container">
         <h1>TERMINAL 2</h1>
-        <div id="content">Welcome,Terminal Booting<span class="dots">...</span></div>
+        <div id="content">Downloading Files<span class="dots">...</span></div>
         <div class="clock-container" id="clockContainer" style="display: none;">
             <div class="clock" id="clock">
+                <!-- Clock Hands -->
                 <div class="hand hour" id="hourHand"></div>
                 <div class="hand minute" id="minuteHand"></div>
-                <!-- Numbers -->
-                <div class="number" style="top: 5%; transform: translateX(-50%) translateY(-50%);">12</div>
-                <div class="number" style="top: 50%; left: 95%; transform: translateX(-50%) translateY(-50%);">3</div>
-                <div class="number" style="top: 95%; transform: translateX(-50%) translateY(-50%);">6</div>
-                <div class="number" style="top: 50%; left: 5%; transform: translateX(-50%) translateY(-50%);">9</div>
-                <!-- Minute marks -->
-                <div class="mark" style="top: 2%; height: 15px;"></div>
-                <div class="mark" style="top: 5%; left: 75%; height: 10px;"></div>
-                <div class="mark" style="top: 75%; left: 2%; height: 10px;"></div>
-                <div class="mark" style="top: 2%; left: 5%; height: 15px;"></div>
+                <!-- Clock Numbers -->
+                <div class="number" style="top: 10%; left: 50%;">12</div>
+                <div class="number" style="top: 50%; right: 10%;">3</div>
+                <div class="number" style="bottom: 10%; left: 50%;">6</div>
+                <div class="number" style="top: 50%; left: 10%;">9</div>
+                <!-- Minute Marks -->
+                <div class="mark" style="top: 5%; left: 50%;"></div>
+                <div class="mark" style="top: 15%; left: 85%;"></div>
+                <div class="mark" style="left: 95%; top: 50%;"></div>
+                <div class="mark" style="bottom: 15%; left: 85%;"></div>
+                <div class="mark" style="bottom: 5%; left: 50%;"></div>
+                <div class="mark" style="bottom: 15%; left: 15%;"></div>
+                <div class="mark" style="left: 5%; top: 50%;"></div>
+                <div class="mark" style="top: 15%; left: 15%;"></div>
             </div>
             <button class="btn" id="enterButton">ENTER</button>
         </div>
@@ -174,7 +179,7 @@
             if (hour === 2 && (minute >= 50 && minute <= 55)) {
                 window.location.href = 'directory2.html';
             } else {
-                alert('No Access To Terinal Recoding Logs');
+                alert('Incorrect time, try again.');
             }
         });
     </script>
