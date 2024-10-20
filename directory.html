@@ -42,6 +42,13 @@
             box-shadow: 0 3px #666;
             transform: translateY(4px);
         }
+        .btn-green {
+            background-color: #00ff00;
+        }
+        .btn-green:active {
+            box-shadow: 0 3px #666;
+            transform: translateY(4px);
+        }
         #content {
             margin-top: 20px;
         }
@@ -52,12 +59,23 @@
         <h1>DOGGIE ARCHIVES DIRECTORY 1</h1>
         <button class="btn" id="readButton">Read Directory 1</button>
         <div id="content"></div>
+        <button class="btn btn-green" id="terminalButton" style="display: none; margin-top: 20px;">TERMINAL 2</button>
     </div>
     <script>
         document.getElementById('readButton').addEventListener('click', function() {
             const content = document.getElementById('content');
-            content.innerHTML = 'I knew this would be a bold step ......kzhhh.......Space and time are connected to each other and single question.............Change Human life.';  // Replace with your desired text
+            content.innerHTML = 'I knew this would be a bold step ......kzhhh.......Space and time are connected to each other, A single question of doganity.............Changed life……….KHZZZZZZZ….Connection Lost.';  // Replace with your desired text
+
+            setTimeout(function() {
+                const terminalButton = document.getElementById('terminalButton');
+                terminalButton.style.display = 'inline-block';
+            }, 3000);
+        });
+
+        document.getElementById('terminalButton').addEventListener('click', function() {
+            window.location.href = 'terminal.html'; // Redirect to the new page
         });
     </script>
 </body>
 </html>
+
