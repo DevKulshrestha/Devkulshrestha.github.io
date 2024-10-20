@@ -72,9 +72,7 @@
             const message = document.getElementById('message');
 
             if (username === correctUsername && password === correctPassword) {
-                message.style.color = 'green';
-                message.innerHTML = 'Access granted';
-                // You can redirect to another page or perform other actions here
+                window.location.href = 'directory.html'; // Redirect to the next page
             } else {
                 message.style.color = 'red';
                 message.innerHTML = 'Try again';
