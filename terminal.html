@@ -37,12 +37,59 @@
             0%, 100% { opacity: 0; }
             50% { opacity: 1; }
         }
+        .clock-container {
+            margin-top: 20px;
+        }
+        .clock {
+            width: 200px;
+            height: 200px;
+            border: 10px solid black;
+            border-radius: 50%;
+            position: relative;
+        }
+        .clock .hand {
+            width: 50%;
+            height: 6px;
+            background: black;
+            position: absolute;
+            top: 50%;
+            transform-origin: 100%;
+            transform: rotate(90deg);
+        }
+        .clock .hour {
+            height: 8px;
+            top: 45%;
+        }
+        .btn {
+            display: inline-block;
+            padding: 15px 25px;
+            font-size: 24px;
+            color: #fff;
+            background-color: #00ff00;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 5px #999;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+        .btn:active {
+            box-shadow: 0 3px #666;
+            transform: translateY(4px);
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>TERMINAL 2</h1>
         <div id="content">Downloading Files<span class="dots">...</span></div>
+        <div class="clock-container" id="clockContainer" style="display: none;">
+            <div class="clock">
+                <div class="hand hour" id="hourHand"></div>
+                <div class="hand minute" id="minuteHand"></div>
+            </div>
+            <button class="btn" id="enterButton">ENTER</button>
+        </div>
     </div>
     <script>
         let dots = '';
@@ -54,8 +101,57 @@
 
         setTimeout(() => {
             document.getElementById('content').innerHTML = 'Access Denied';
+            document.getElementById('clockContainer').style.display = 'block';
         }, 6000);
+
+        let hourHand = document.getElementById('hourHand');
+        let minuteHand = document.getElementById('minuteHand');
+
+        // Interact with hour and minute hands
+        hourHand.style.transform = 'rotate(90deg)';
+        minuteHand.style.transform = 'rotate(270deg)';
+
+        let isHourHandClicked = false;
+        let isMinuteHandClicked = false;
+
+        hourHand.addEventListener('mousedown', () => { isHourHandClicked = true; });
+        minuteHand.addEventListener('mousedown', () => { isMinuteHandClicked = true; });
+
+        document.addEventListener('mousemove', (event) => {
+            if (isHourHandClicked) {
+                let rect = hourHand.getBoundingClientRect();
+                let angle = Math.atan2(event.clientY - (rect.top + rect.height / 2), event.clientX - (rect.left + rect.width / 2)) * 180 / Math.PI;
+                hourHand.style.transform = `rotate(${angle + 90}deg)`;
+            }
+            if (isMinuteHandClicked) {
+                let rect = minuteHand.getBoundingClientRect();
+                let angle = Math.atan2(event.clientY - (rect.top + rect.height / 2), event.clientX - (rect.left + rect.width / 2)) * 180 / Math.PI;
+                minuteHand.style.transform = `rotate(${angle + 90}deg)`;
+            }
+        });
+
+        document.addEventListener('mouseup', () => {
+            isHourHandClicked = false;
+            isMinuteHandClicked = false;
+        });
+
+        document.getElementById('enterButton').addEventListener('click', () => {
+            let hourAngle = parseFloat(hourHand.style.transform.replace('rotate(', '').replace('deg)', ''));
+            let minuteAngle = parseFloat(minuteHand.style.transform.replace('rotate(', '').replace('deg)', ''));
+
+            let hour = Math.round((hourAngle - 90) / 30);
+            let minute = Math.round((minuteAngle - 90) / 6);
+
+            // Adjust to 12-hour format
+            if (hour < 0) hour += 12;
+            if (minute < 0) minute += 60;
+
+            if (hour === 2 && (minute >= 50 && minute <= 55)) {
+                window.location.href = 'directory2.html';
+            } else {
+                alert('Incorrect time, try again.');
+            }
+        });
     </script>
 </body>
 </html>
-
