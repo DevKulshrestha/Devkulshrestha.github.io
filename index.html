@@ -44,19 +44,42 @@
         input[type="submit"]:hover {
             background-color: #45a049;
         }
+        .message {
+            text-align: center;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
     <div class="login-container">
         <h1>Doggie Security Access</h1>
-        <form method="post">
+        <form id="loginForm">
             <label for="username">Name Of Operator:</label>
             <input type="text" id="username" name="username" required>
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
             <input type="submit" value="Login">
         </form>
+        <div class="message" id="message"></div>
     </div>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const correctUsername = 'Cars21';
+            const correctPassword = 'Kabhikabhiaditi31';
+            const message = document.getElementById('message');
+
+            if (username === correctUsername && password === correctPassword) {
+                message.style.color = 'green';
+                message.innerHTML = 'Access granted';
+                // You can redirect to another page or perform other actions here
+            } else {
+                message.style.color = 'red';
+                message.innerHTML = 'Try again';
+            }
+        });
+    </script>
 </body>
 </html>
-
