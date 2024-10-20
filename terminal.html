@@ -60,6 +60,21 @@
             height: 8px;
             top: 45%;
         }
+        .clock .number {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .clock .mark {
+            position: absolute;
+            width: 4px;
+            height: 10px;
+            background: black;
+            left: 50%;
+            transform: translateX(-50%);
+        }
         .btn {
             display: inline-block;
             padding: 15px 25px;
@@ -84,9 +99,19 @@
         <h1>TERMINAL 2</h1>
         <div id="content">Downloading Files<span class="dots">...</span></div>
         <div class="clock-container" id="clockContainer" style="display: none;">
-            <div class="clock">
+            <div class="clock" id="clock">
                 <div class="hand hour" id="hourHand"></div>
                 <div class="hand minute" id="minuteHand"></div>
+                <!-- Numbers -->
+                <div class="number" style="top: 5%; transform: translateX(-50%) translateY(-50%);">12</div>
+                <div class="number" style="top: 50%; left: 95%; transform: translateX(-50%) translateY(-50%);">3</div>
+                <div class="number" style="top: 95%; transform: translateX(-50%) translateY(-50%);">6</div>
+                <div class="number" style="top: 50%; left: 5%; transform: translateX(-50%) translateY(-50%);">9</div>
+                <!-- Minute marks -->
+                <div class="mark" style="top: 2%; height: 15px;"></div>
+                <div class="mark" style="top: 5%; left: 75%; height: 10px;"></div>
+                <div class="mark" style="top: 75%; left: 2%; height: 10px;"></div>
+                <div class="mark" style="top: 2%; left: 5%; height: 15px;"></div>
             </div>
             <button class="btn" id="enterButton">ENTER</button>
         </div>
