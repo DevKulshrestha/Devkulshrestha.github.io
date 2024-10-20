@@ -64,12 +64,21 @@
             position: absolute;
             width: 20px;
             height: 20px;
-            left: 50%;
-            transform: translateX(-50%);
+            text-align: center;
+            font-size: 18px;
         }
+        .clock .number:nth-child(1)  { top: 5%; left: 50%; transform: translate(-50%, -50%); }
+        .clock .number:nth-child(2)  { top: 25%; left: 85%; transform: translate(-50%, -50%); }
+        .clock .number:nth-child(3)  { top: 50%; left: 95%; transform: translate(-50%, -50%); }
+        .clock .number:nth-child(4)  { top: 75%; left: 85%; transform: translate(-50%, -50%); }
+        .clock .number:nth-child(5)  { top: 95%; left: 50%; transform: translate(-50%, -50%); }
+        .clock .number:nth-child(6)  { top: 75%; left: 15%; transform: translate(-50%, -50%); }
+        .clock .number:nth-child(7)  { top: 50%; left: 5%; transform: translate(-50%, -50%); }
+        .clock .number:nth-child(8)  { top: 25%; left: 15%; transform: translate(-50%, -50%); }
+        .clock .number:nth-child(9)  { top: 5%; left: 50%; transform: translate(-50%, -50%); }
         .clock .mark {
             position: absolute;
-            width: 4px;
+            width: 2px;
             height: 10px;
             background: black;
             left: 50%;
@@ -103,10 +112,18 @@
                 <div class="hand hour" id="hourHand"></div>
                 <div class="hand minute" id="minuteHand"></div>
                 <!-- Numbers -->
-                <div class="number" style="top: 5%; transform: translateX(-50%) translateY(-50%);">12</div>
-                <div class="number" style="top: 50%; left: 95%; transform: translateX(-50%) translateY(-50%);">3</div>
-                <div class="number" style="top: 95%; transform: translateX(-50%) translateY(-50%);">6</div>
-                <div class="number" style="top: 50%; left: 5%; transform: translateX(-50%) translateY(-50%);">9</div>
+                <div class="number" style="top: 10%; left: 50%; transform: translate(-50%, -50%);">12</div>
+                <div class="number" style="top: 25%; left: 85%; transform: translate(-50%, -50%);">1</div>
+                <div class="number" style="top: 45%; left: 95%; transform: translate(-50%, -50%);">2</div>
+                <div class="number" style="top: 70%; left: 85%; transform: translate(-50%, -50%);">3</div>
+                <div class="number" style="top: 85%; left: 75%; transform: translate(-50%, -50%);">4</div>
+                <div class="number" style="top: 90%; left: 50%; transform: translate(-50%, -50%);">6</div>
+                <div class="number" style="top: 85%; left: 25%; transform: translate(-50%, -50%);">7</div>
+                <div class="number" style="top: 70%; left: 15%; transform: translate(-50%, -50%);">8</div>
+                <div class="number" style="top: 45%; left: 5%; transform: translate(-50%, -50%);">9</div>
+                <div class="number" style="top: 25%; left: 15%; transform: translate(-50%, -50%);">10</div>
+                <div class="number" style="top: 10%; left: 50%; transform: translate(-50%, -50%);">11</div>
+                <div class="number" style="top: 10%; left: 50%; transform: translate(-50%, -50%);">12</div>
                 <!-- Minute marks -->
                 <div class="mark" style="top: 2%; height: 15px;"></div>
                 <div class="mark" style="top: 5%; left: 75%; height: 10px;"></div>
@@ -150,33 +167,4 @@
             }
             if (isMinuteHandClicked) {
                 let rect = minuteHand.getBoundingClientRect();
-                let angle = Math.atan2(event.clientY - (rect.top + rect.height / 2), event.clientX - (rect.left + rect.width / 2)) * 180 / Math.PI;
-                minuteHand.style.transform = `rotate(${angle + 90}deg)`;
-            }
-        });
-
-        document.addEventListener('mouseup', () => {
-            isHourHandClicked = false;
-            isMinuteHandClicked = false;
-        });
-
-        document.getElementById('enterButton').addEventListener('click', () => {
-            let hourAngle = parseFloat(hourHand.style.transform.replace('rotate(', '').replace('deg)', ''));
-            let minuteAngle = parseFloat(minuteHand.style.transform.replace('rotate(', '').replace('deg)', ''));
-
-            let hour = Math.round((hourAngle - 90) / 30);
-            let minute = Math.round((minuteAngle - 90) / 6);
-
-            // Adjust to 12-hour format
-            if (hour < 0) hour += 12;
-            if (minute < 0) minute += 60;
-
-            if (hour === 2 && (minute >= 50 && minute <= 55)) {
-                window.location.href = 'directory2.html';
-            } else {
-                alert('Incorrect time, try again.');
-            }
-        });
-    </script>
-</body>
-</html>
+                let angle = Math.atan2(event.clientY - (rect.top + rect
