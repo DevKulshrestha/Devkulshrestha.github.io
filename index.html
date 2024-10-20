@@ -48,6 +48,15 @@
             text-align: center;
             margin-top: 10px;
         }
+        .show-password {
+            margin-top: -15px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .show-password input {
+            margin-left: 10px;
+        }
     </style>
 </head>
 <body>
@@ -58,11 +67,20 @@
             <input type="text" id="username" name="username" required>
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
+            <div class="show-password">
+                <label for="showPassword">Show Password</label>
+                <input type="checkbox" id="showPassword">
+            </div>
             <input type="submit" value="Login">
         </form>
         <div class="message" id="message"></div>
     </div>
     <script>
+        document.getElementById('showPassword').addEventListener('change', function() {
+            const passwordInput = document.getElementById('password');
+            passwordInput.type = this.checked ? 'text' : 'password';
+        });
+
         document.getElementById('loginForm').addEventListener('submit', function(event) {
             event.preventDefault();
             const username = document.getElementById('username').value;
