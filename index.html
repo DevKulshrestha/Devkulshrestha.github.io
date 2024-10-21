@@ -61,7 +61,8 @@
 </head>
 <body>
     <audio id="backgroundMusic" loop>
-        <source src="background-music.MP3" type="audio/mpeg">
+        <source src="background-music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
     </audio>
     <div class="login-container">
         <h1>Archive Access</h1>
@@ -96,12 +97,17 @@
                 window.location.href = 'directory.html'; // Redirect to the next page
             } else {
                 message.style.color = 'red';
-                message.innerHTML = 'Try Again';
+                message.innerHTML = 'Try again';
             }
         });
 
-        // Play background music
-        document.getElementById('backgroundMusic').play('background-music.MP3');
+        // Play background music on page load
+        document.getElementById('backgroundMusic').play().catch(error => {
+            // If autoplay is blocked, wait for a user interaction
+            document.body.addEventListener('click', () => {
+                document.getElementById('backgroundMusic').play();
+            }, { once: true });
+        });
     </script>
 </body>
 </html>
