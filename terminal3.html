@@ -62,20 +62,20 @@
             border-bottom: 50px solid #4CAF50;
         }
         .square {
-            background-color: #4CAF50;
+            background-color: #FF5733;
         }
         .oval {
-            background-color: #4CAF50;
-            border-radius: 50%;
+            background-color: #33FF57;
+            width: 50px;
+            height: 30px;
+            border-radius: 25px;
         }
         .circle {
-            background-color: #4CAF50;
+            background-color: #3375FF;
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
         }
         .rectangle {
-            background-color: #4CAF50;
+            background-color: #FFD700;
             width: 100px;
             height: 50px;
         }
@@ -156,6 +156,20 @@
                                 } else {
                                     specialMessage.style.color = 'red';
                                     specialMessage.textContent = 'Incorrect Order';
+                                    const refreshButton = document.createElement('button');
+                                    refreshButton.textContent = 'Try Again';
+                                    refreshButton.classList.add('symbol-button');
+                                    refreshButton.addEventListener('click', () => {
+                                        userOrder = [];
+                                        document.querySelectorAll('.symbol').forEach(symbol => {
+                                            symbol.classList.remove('selected-symbol');
+                                        });
+                                        displayUserOrder();
+                                        specialMessage.textContent = '';
+                                        specialMessage.style.color = '';
+                                        specialMessage.removeChild(refreshButton);
+                                    });
+                                    specialMessage.appendChild(refreshButton);
                                 }
                             });
 
