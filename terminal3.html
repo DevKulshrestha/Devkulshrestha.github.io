@@ -47,6 +47,41 @@
             0%, 100% { opacity: 0; }
             50% { opacity: 1; }
         }
+        .symbol {
+            width: 50px;
+            height: 50px;
+            margin: 10px;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .triangle {
+            width: 0;
+            height: 0;
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+            border-bottom: 50px solid #4CAF50;
+        }
+        .square {
+            background-color: #4CAF50;
+        }
+        .oval {
+            background-color: #4CAF50;
+            border-radius: 50%;
+        }
+        .circle {
+            background-color: #4CAF50;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+        }
+        .rectangle {
+            background-color: #4CAF50;
+            width: 100px;
+            height: 50px;
+        }
+        .selected-symbol {
+            border: 2px solid #000;
+        }
     </style>
 </head>
 <body>
@@ -79,12 +114,13 @@
                             message.innerHTML = `
                                 Enter special code:
                                 <div class="symbol-container">
-                                    <button class="symbol-button" id="triangle">Triangle</button>
-                                    <button class="symbol-button" id="square">Square</button>
-                                    <button class="symbol-button" id="oval">Oval</button>
-                                    <button class="symbol-button" id="circle">Circle</button>
-                                    <button class="symbol-button" id="rectangle">Rectangle</button>
+                                    <div class="symbol triangle" data-shape="triangle"></div>
+                                    <div class="symbol square" data-shape="square"></div>
+                                    <div class="symbol oval" data-shape="oval"></div>
+                                    <div class="symbol circle" data-shape="circle"></div>
+                                    <div class="symbol rectangle" data-shape="rectangle"></div>
                                 </div>
+                                <div id="userOrderContainer" class="symbol-container"></div>
                                 <button id="specialCodeButton" class="symbol-button">Submit</button>
                                 <p id="specialMessage"></p>
                             `;
@@ -92,13 +128,25 @@
                             const correctOrder = ["triangle", "circle", "rectangle", "oval"];
                             let userOrder = [];
 
-                            document.querySelectorAll('.symbol-button').forEach(button => {
-                                button.addEventListener('click', () => {
-                                    if (button.id !== 'specialCodeButton') {
-                                        userOrder.push(button.id);
+                            document.querySelectorAll('.symbol').forEach(symbol => {
+                                symbol.addEventListener('click', () => {
+                                    if (userOrder.length < 4) {
+                                        userOrder.push(symbol.dataset.shape);
+                                        symbol.classList.add('selected-symbol');
+                                        displayUserOrder();
                                     }
                                 });
                             });
+
+                            function displayUserOrder() {
+                                const userOrderContainer = document.getElementById('userOrderContainer');
+                                userOrderContainer.innerHTML = '';
+                                userOrder.forEach(shape => {
+                                    const div = document.createElement('div');
+                                    div.classList.add('symbol', shape);
+                                    userOrderContainer.appendChild(div);
+                                });
+                            }
 
                             document.getElementById('specialCodeButton').addEventListener('click', () => {
                                 const specialMessage = document.getElementById('specialMessage');
