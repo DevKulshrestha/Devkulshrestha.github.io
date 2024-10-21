@@ -60,6 +60,9 @@
     </style>
 </head>
 <body>
+    <audio id="backgroundMusic" loop>
+        <source src="Idea22.mp3" type="audio/mpeg">
+    </audio>
     <div class="login-container">
         <h1>Archive Access</h1>
         <form id="loginForm">
@@ -93,9 +96,12 @@
                 window.location.href = 'directory.html'; // Redirect to the next page
             } else {
                 message.style.color = 'red';
-                message.innerHTML = 'Try again';
+                message.innerHTML = 'Try Again';
             }
         });
+
+        // Play background music
+        document.getElementById('backgroundMusic').play();
     </script>
 </body>
 </html>
