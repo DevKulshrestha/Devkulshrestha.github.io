@@ -4,8 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TERMINAL 3</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, p {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #00ff00;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .dots {
+            font-size: 24px;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to Terminal 3</h1>
+    <div class="container" id="mainContent">
+        <h1>Reaching Terminal 3</h1>
+        <div class="dots">.....</div>
+    </div>
+    <script>
+        setTimeout(function() {
+            document.getElementById('mainContent').innerHTML = `
+                <h2>Confirming Identity</h2>
+                <input type="text" id="username" placeholder="Enter your name">
+                <button id="confirmButton">Enter</button>
+                <p id="message"></p>
+            `;
+            
+            document.getElementById('confirmButton').addEventListener('click', function() {
+                const username = document.getElementById('username').value;
+                const message = document.getElementById('message');
+                
+                if (username !== 'Devolaxia') {
+                    message.style.color = 'red';
+                    message.textContent = 'Incorrect Identity';
+                } else {
+                    message.style.color = 'black';
+                    message.innerHTML = `System has detected unusual traffic <span class="dots">.....</span>`;
+                    setTimeout(function() {
+                        message.innerHTML = `Enter special code: <input type="text" id="specialCode"><button id="specialCodeButton">Enter</button>`;
+                    }, 4000);
+                }
+            });
+        }, 4000);
+    </script>
 </body>
 </html>
