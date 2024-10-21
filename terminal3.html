@@ -74,8 +74,11 @@
                     message.style.color = 'black';
                     message.innerHTML = `System has detected unusual traffic <span class="dots">.....</span>`;
                     setTimeout(function() {
-                        message.innerHTML = `Enter special code: <input type="text" id="specialCode"><button id="specialCodeButton">Enter</button>`;
-                    }, 4000);
+                        message.innerHTML = `Redirecting to Special code <span class="dots">.....</span>`;
+                        setTimeout(function() {
+                            message.innerHTML = `Enter special code: <input type="text" id="specialCode"><button id="specialCodeButton">Enter</button>`;
+                        }, 5000);
+                    }, 5000);
                 }
             });
         }, 4000);
