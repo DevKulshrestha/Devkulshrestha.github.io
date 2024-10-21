@@ -23,21 +23,21 @@
         h1, h2, p {
             margin-bottom: 20px;
         }
-        input[type="text"] {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        button {
+        .symbol-button {
+            display: inline-block;
             padding: 10px 20px;
+            margin: 10px;
             font-size: 16px;
             color: white;
-            background-color: #00ff00;
+            background-color: #4CAF50;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+        }
+        .symbol-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
         }
         .dots {
             font-size: 24px;
@@ -76,7 +76,41 @@
                     setTimeout(function() {
                         message.innerHTML = `Redirecting to Special code <span class="dots">.....</span>`;
                         setTimeout(function() {
-                            message.innerHTML = `Enter special code: <input type="text" id="specialCode"><button id="specialCodeButton">Enter</button>`;
+                            message.innerHTML = `
+                                Enter special code:
+                                <div class="symbol-container">
+                                    <button class="symbol-button" id="triangle">Triangle</button>
+                                    <button class="symbol-button" id="square">Square</button>
+                                    <button class="symbol-button" id="oval">Oval</button>
+                                    <button class="symbol-button" id="circle">Circle</button>
+                                    <button class="symbol-button" id="rectangle">Rectangle</button>
+                                </div>
+                                <button id="specialCodeButton" class="symbol-button">Submit</button>
+                                <p id="specialMessage"></p>
+                            `;
+
+                            const correctOrder = ["triangle", "circle", "rectangle", "oval"];
+                            let userOrder = [];
+
+                            document.querySelectorAll('.symbol-button').forEach(button => {
+                                button.addEventListener('click', () => {
+                                    if (button.id !== 'specialCodeButton') {
+                                        userOrder.push(button.id);
+                                    }
+                                });
+                            });
+
+                            document.getElementById('specialCodeButton').addEventListener('click', () => {
+                                const specialMessage = document.getElementById('specialMessage');
+                                
+                                if (JSON.stringify(userOrder) === JSON.stringify(correctOrder)) {
+                                    window.location.href = 'archive3.html'; // Redirect to the next page
+                                } else {
+                                    specialMessage.style.color = 'red';
+                                    specialMessage.textContent = 'Incorrect Order';
+                                }
+                            });
+
                         }, 5000);
                     }, 5000);
                 }
